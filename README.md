@@ -1,81 +1,230 @@
-# Kalouma Market - Landing Page
+# Kalouma Market - Site Web Officiel
 
-Site web officiel de Kalouma Market, la marketplace N°1 en Guinee.
+Site web officiel de **Kalouma Market**, la marketplace N°1 en Guinée pour acheter et vendre facilement.
 
-## Structure
+🌐 **URL**: [https://kalouma.com](https://kalouma.com)
+
+---
+
+## 📁 Structure du Projet
 
 ```
 kalouma/
 ├── index.html          # Page principale
-├── privacy.html        # Politique de confidentialite
-├── terms.html          # Conditions d'utilisation
-├── CNAME               # Configuration domaine (kalouma.com)
+├── privacy.html        # Politique de confidentialité
+├── terms.html          # Conditions d'utilisation (à créer)
+├── CNAME               # Configuration domaine personnalisé
+├── README.md           # Ce fichier
 ├── css/
-│   └── style.css       # Styles
+│   └── style.css       # Styles (responsive, moderne)
 ├── js/
-│   └── main.js         # JavaScript
-└── images/             # Assets (screenshots, logo, etc.)
+│   └── main.js         # JavaScript (animations, interactions)
+└── images/             # Assets visuels
+    ├── favicon.png
+    ├── app-screenshot.png
+    ├── screen-*.png
+    └── ...
 ```
 
-## Deploiement
+---
 
-Ce site est heberge sur GitHub Pages.
+## 🚀 Déploiement sur GitHub Pages
 
-### Configuration DNS (Cloudflare)
+### Étape 1: Push vers GitHub
 
+```bash
+cd /home/bloman/Desktop/MobileAPP/kalouma
+git add .
+git commit -m "Initial landing page"
+git push origin main
 ```
-Type    Name    Content                 Proxy
-CNAME   @       username.github.io     Yes
-CNAME   www     kalouma.com            Yes
+
+### Étape 2: Activer GitHub Pages
+
+1. Aller sur GitHub → Repository → **Settings**
+2. Section **Pages** (dans le menu gauche)
+3. Source: **Deploy from a branch**
+4. Branch: `main` / `/ (root)`
+5. Cliquer **Save**
+
+Le site sera accessible sur: `https://votre-username.github.io/kalouma/`
+
+### Étape 3: Configurer le Domaine Personnalisé
+
+1. Dans GitHub Pages, section "Custom domain"
+2. Entrer: `kalouma.com`
+3. Cocher "Enforce HTTPS"
+4. Sauvegarder
+
+---
+
+## 🌐 Configuration DNS (Cloudflare)
+
+Après avoir acheté le domaine `kalouma.com`, configurer les DNS sur Cloudflare:
+
+### Enregistrements DNS Requis
+
+| Type | Nom | Contenu | Proxy | TTL |
+|------|-----|---------|-------|-----|
+| CNAME | `@` | `votre-username.github.io` | ✅ Oui | Auto |
+| CNAME | `www` | `kalouma.com` | ✅ Oui | Auto |
+
+### Pour le Backend (api.kalouma.com)
+
+| Type | Nom | Contenu | Proxy | TTL |
+|------|-----|---------|-------|-----|
+| A | `api` | `IP_DU_VPS` | ✅ Oui | Auto |
+
+### Configuration SSL/TLS Cloudflare
+
+1. SSL/TLS → Overview → Mode: **Full (strict)**
+2. Edge Certificates → Always Use HTTPS: **On**
+3. Edge Certificates → Automatic HTTPS Rewrites: **On**
+
+---
+
+## 🖼️ Images à Ajouter
+
+Placer ces images dans le dossier `images/`:
+
+### Obligatoires
+
+| Fichier | Dimensions | Description |
+|---------|------------|-------------|
+| `favicon.png` | 32x32 px | Icône onglet navigateur |
+| `apple-touch-icon.png` | 180x180 px | Icône iOS |
+| `og-image.png` | 1200x630 px | Image partage réseaux sociaux |
+| `app-screenshot.png` | 300x600 px | Screenshot principal (hero) |
+
+### Screenshots de l'App
+
+| Fichier | Dimensions | Description |
+|---------|------------|-------------|
+| `screen-home.png` | 250x500 px | Screenshot page d'accueil |
+| `screen-search.png` | 250x500 px | Screenshot recherche |
+| `screen-chat.png` | 250x500 px | Screenshot messagerie |
+| `screen-profile.png` | 250x500 px | Screenshot profil |
+
+### Optionnels
+
+| Fichier | Dimensions | Description |
+|---------|------------|-------------|
+| `phones-mockup.png` | 500x400 px | Mockup 2 téléphones |
+| `qr-code.png` | 200x200 px | QR code Play Store |
+| `logo.svg` | - | Logo vectoriel |
+
+### Générer les Screenshots
+
+Tu peux utiliser ces outils:
+- **Figma** - Pour créer des mockups
+- **Shotsnapp** - https://shotsnapp.com (mockups gratuits)
+- **Previewed** - https://previewed.app
+- **MockuPhone** - https://mockuphone.com
+
+---
+
+## ✏️ Personnalisation
+
+### Mettre à Jour le Lien Play Store
+
+Quand l'app sera publiée sur le Play Store, modifier dans `js/main.js`:
+
+```javascript
+// Ligne ~87
+const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kalouma.market';
+
+// Et décommenter:
+window.open(playStoreUrl, '_blank');
 ```
 
-### Configuration GitHub Pages
+### Mettre à Jour les Réseaux Sociaux
 
-1. Aller dans Settings > Pages
-2. Source: Deploy from a branch
-3. Branch: main / root
-4. Custom domain: kalouma.com
+Dans `index.html`, section footer (~ligne 350):
 
-## Images Requises
+```html
+<div class="social-links">
+    <a href="https://facebook.com/kalouma" aria-label="Facebook">...</a>
+    <a href="https://instagram.com/kalouma" aria-label="Instagram">...</a>
+    <a href="https://twitter.com/kalouma" aria-label="Twitter">...</a>
+    <a href="https://wa.me/224XXXXXXXX" aria-label="WhatsApp">...</a>
+</div>
+```
 
-Placez ces images dans le dossier `images/`:
+### Modifier les Statistiques
 
-- `favicon.png` - Favicon 32x32
-- `apple-touch-icon.png` - Icon iOS 180x180
-- `og-image.png` - Image Open Graph 1200x630
-- `app-screenshot.png` - Screenshot principal de l'app
-- `screen-home.png` - Screenshot accueil
-- `screen-search.png` - Screenshot recherche
-- `screen-chat.png` - Screenshot chat
-- `screen-profile.png` - Screenshot profil
-- `phones-mockup.png` - Mockup telephones
-- `qr-code.png` - QR code Play Store (optionnel)
+Dans `index.html`, section hero (~ligne 75):
 
-## Liens a Mettre a Jour
+```html
+<div class="stat">
+    <span class="stat-number" data-count="10000">0</span>
+    <span class="stat-label">Utilisateurs</span>
+</div>
+```
 
-Dans `index.html` et `js/main.js`, mettre a jour :
+---
 
-1. **Lien Play Store** - Quand l'app sera publiee
-2. **Liens reseaux sociaux** - Facebook, Instagram, Twitter
-3. **URL de l'API** - api.kalouma.com
+## 🎨 Fonctionnalités du Site
 
-## Fonctionnalites
+- ✅ Design moderne et professionnel
+- ✅ 100% responsive (mobile, tablette, desktop)
+- ✅ Animations au scroll (fade-in, slide)
+- ✅ Statistiques animées (compteur)
+- ✅ FAQ accordéon interactif
+- ✅ Menu mobile hamburger
+- ✅ Boutons téléchargement Play Store / App Store
+- ✅ SEO optimisé (meta tags, Open Graph)
+- ✅ Performance optimisée (lazy loading)
 
-- Design responsive (mobile-first)
-- Animations au scroll
-- FAQ accordeon
-- Statistiques animees
-- Menu mobile
-- SEO optimise (meta tags, Open Graph)
+---
 
-## Technologies
+## 🛠️ Technologies Utilisées
 
-- HTML5
-- CSS3 (Flexbox, Grid, Variables CSS)
-- JavaScript (ES6+, IntersectionObserver)
-- Font Awesome (icons)
-- Google Fonts (Inter)
+- **HTML5** - Structure sémantique
+- **CSS3** - Flexbox, Grid, Variables CSS, Animations
+- **JavaScript ES6+** - IntersectionObserver, modules
+- **Font Awesome 6** - Icônes
+- **Google Fonts** - Police Inter
 
-## Contact
+---
 
-Email: staff@kalouma.com
+## 📱 Aperçu
+
+### Desktop
+![Desktop Preview](images/preview-desktop.png)
+
+### Mobile
+![Mobile Preview](images/preview-mobile.png)
+
+---
+
+## 🔗 Liens Utiles
+
+- **Play Store**: [À venir]
+- **App Store**: [À venir]
+- **API Backend**: https://api.kalouma.com
+- **Support**: staff@kalouma.com
+
+---
+
+## 📄 Fichiers Légaux
+
+- `privacy.html` - Politique de confidentialité ✅
+- `terms.html` - Conditions d'utilisation (à créer)
+- `cookies.html` - Politique cookies (optionnel)
+
+---
+
+## 🇬🇳 À Propos
+
+**Kalouma Market** est une application mobile qui permet aux Guinéens d'acheter et vendre des produits et services facilement. Notre mission est de connecter les acheteurs et vendeurs à travers toute la Guinée.
+
+---
+
+## 📞 Contact
+
+- **Email**: staff@kalouma.com
+- **Localisation**: Conakry, Guinée
+
+---
+
+*Fait avec ❤️ en Guinée*

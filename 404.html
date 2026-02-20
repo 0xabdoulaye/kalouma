@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalouma Market - Annonce</title>
+
+    <!-- Open Graph pour les previews sur WhatsApp/Facebook -->
+    <meta property="og:title" content="Voir cette annonce sur Kalouma Market">
+    <meta property="og:description" content="Achetez et vendez en Guinee avec Kalouma Market">
+    <meta property="og:image" content="https://kalouma.com/images/og-image.png">
+    <meta property="og:url" content="https://kalouma.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kalouma Market">
+    <meta name="twitter:description" content="Achetez et vendez en Guinee">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #137FEC 0%, #0D5BB5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #FF6B00, #FF8C00);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 36px;
+        }
+
+        h1 {
+            color: #111;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #137FEC, #0D5BB5);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #137FEC;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading .spinner {
+            display: block;
+        }
+
+        .loading .btn {
+            display: none;
+        }
+
+        .footer {
+            margin-top: 24px;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="logo">🛒</div>
+        <h1>Kalouma Market</h1>
+        <p id="message">Ouverture de l'annonce dans l'application...</p>
+
+        <div class="spinner" id="spinner"></div>
+
+        <a href="#" class="btn btn-primary" id="openApp" style="display: none;">
+            Ouvrir dans l'app
+        </a>
+
+        <a href="https://play.google.com/store/apps/details?id=com.kalouma.market"
+           class="btn btn-primary" id="downloadBtn" style="display: none;">
+            Telecharger l'application
+        </a>
+
+        <a href="https://play.google.com/store/apps/details?id=com.kalouma.market"
+           class="btn btn-secondary" id="storeBtn" style="display: none;">
+            Voir sur Play Store
+        </a>
+
+        <div class="footer">
+            Kalouma Market - Achetez et vendez en Guinee
+        </div>
+    </div>
+
+    <script>
+        // Extraire le type et l'ID depuis l'URL
+        const pathParts = window.location.pathname.split('/').filter(p => p);
+        const type = pathParts[0]; // 'ad' ou 'service'
+        const itemId = pathParts[1] || '';
+
+        // Verifier si c'est un deep link valide
+        const isDeepLink = (type === 'ad' || type === 'service') && itemId;
+
+        // URLs
+        const appDeepLink = isDeepLink ? `kalouma://${type}/${itemId}` : 'kalouma://';
+        const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kalouma.market';
+
+        // Detecter le type d'appareil
+        const isAndroid = /Android/i.test(navigator.userAgent);
+        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const isMobile = isAndroid || isIOS;
+
+        const container = document.getElementById('container');
+        const message = document.getElementById('message');
+        const spinner = document.getElementById('spinner');
+        const openAppBtn = document.getElementById('openApp');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const storeBtn = document.getElementById('storeBtn');
+
+        // Si ce n'est pas un deep link valide, rediriger vers l'accueil
+        if (!isDeepLink) {
+            window.location.href = '/';
+        }
+
+        function showDownloadOptions() {
+            spinner.style.display = 'none';
+            message.textContent = "L'application n'est pas installee";
+
+            if (isAndroid) {
+                downloadBtn.style.display = 'block';
+                downloadBtn.href = playStoreUrl;
+            } else if (isIOS) {
+                downloadBtn.style.display = 'block';
+                downloadBtn.textContent = 'Bientot disponible sur App Store';
+                downloadBtn.href = '#';
+                downloadBtn.style.background = '#ccc';
+            } else {
+                // Desktop
+                message.textContent = "Scannez ce QR code avec votre telephone ou telechargez l'app";
+                storeBtn.style.display = 'block';
+            }
+        }
+
+        function tryOpenApp() {
+            spinner.style.display = 'block';
+
+            // Essayer d'ouvrir l'app
+            const start = Date.now();
+
+            // Creer un iframe invisible pour tenter d'ouvrir l'app
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = appDeepLink;
+            document.body.appendChild(iframe);
+
+            // Aussi essayer avec window.location
+            setTimeout(() => {
+                window.location.href = appDeepLink;
+            }, 100);
+
+            // Si apres 2 secondes on est toujours la, l'app n'est pas installee
+            setTimeout(() => {
+                const elapsed = Date.now() - start;
+
+                // Si moins de 2 secondes se sont ecoulees, l'app n'a probablement pas ete ouverte
+                if (elapsed < 2500) {
+                    showDownloadOptions();
+                }
+            }, 2000);
+        }
+
+        // Lancer la detection au chargement
+        if (isDeepLink) {
+            if (isMobile) {
+                tryOpenApp();
+            } else {
+                // Sur desktop, montrer directement les options
+                spinner.style.display = 'none';
+                message.textContent = "Telechargez Kalouma Market sur votre telephone";
+                storeBtn.style.display = 'block';
+            }
+        }
+
+        // Gerer la visibilite de la page (si l'utilisateur revient)
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                // L'utilisateur est revenu, montrer les options de telechargement
+                setTimeout(showDownloadOptions, 500);
+            }
+        });
+    </script>
+</body>
+</html>

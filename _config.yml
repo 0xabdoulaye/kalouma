@@ -1,0 +1,8 @@
+# Configuration Jekyll pour GitHub Pages
+# Ce fichier assure que les fichiers .well-known sont servis correctement
+
+include:
+  - .well-known
+
+# Desactiver Jekyll pour servir les fichiers tels quels
+plugins: []

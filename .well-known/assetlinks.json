@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.kalouma.market",
+    "sha256_cert_fingerprints": [
+      "34:FF:28:EB:A0:CF:CE:BD:D6:6D:98:1A:D3:52:F2:E3:3A:36:FC:7A:66:5B:4E:F6:CF:05:C1:8B:CC:22:52:80"
+    ]
+  }
+}]

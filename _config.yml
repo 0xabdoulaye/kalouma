@@ -3,6 +3,8 @@
 
 include:
   - .well-known
+  - robots.txt
+  - sitemap.xml
 
 # Desactiver Jekyll pour servir les fichiers tels quels
 plugins: []

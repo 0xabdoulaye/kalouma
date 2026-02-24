@@ -168,8 +168,8 @@ a {
 }
 
 .logo-icon-img {
-    width: 36px;
-    height: 36px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     object-fit: contain;
     transition: transform 0.3s ease;

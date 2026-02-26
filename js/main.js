@@ -172,19 +172,14 @@ function initSmoothScroll() {
 }
 
 /**
- * Store buttons - Update with actual Play Store links when available
+ * Store buttons - Google Play Store link
  */
 const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kalouma.market';
 
-// Update Play Store buttons when app is published
 document.querySelectorAll('#playStoreBtn, #playStoreBtn2, .google-play').forEach(btn => {
     btn.addEventListener('click', function(e) {
-        // Uncomment when app is published:
-        // window.open(playStoreUrl, '_blank');
-
-        // For now, show coming soon message
         e.preventDefault();
-        showToast('Application bientot disponible sur le Play Store !');
+        window.open(playStoreUrl, '_blank');
     });
 });
 

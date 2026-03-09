@@ -3,23 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalouma Market - Annonce</title>
+    <title>Page introuvable - Kalouma Market</title>
 
-    <!-- Open Graph pour les previews sur WhatsApp/Facebook -->
-    <meta property="og:title" content="Kalouma Market">
-    <meta property="og:description" content="Decouvrez cette annonce sur Kalouma - La marketplace de confiance en Guinee. Telechargez l'app pour voir les details.">
-    <meta property="og:image" content="https://kalouma.com/images/og-image.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://kalouma.com">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Kalouma Market">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#2E7D32">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Kalouma Market">
-    <meta name="twitter:description" content="Decouvrez cette annonce sur Kalouma - La marketplace de confiance en Guinee">
-    <meta name="twitter:image" content="https://kalouma.com/images/og-image.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         * {
@@ -29,8 +23,8 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, #137FEC 0%, #0D5BB5 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -41,219 +35,118 @@
         .container {
             background: white;
             border-radius: 24px;
-            padding: 40px;
-            max-width: 400px;
+            padding: 48px 40px;
+            max-width: 480px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
         }
 
         .logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #FF6B00, #FF8C00);
-            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 24px;
-            font-size: 36px;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .logo img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+        }
+
+        .logo span {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #212121;
+        }
+
+        .error-code {
+            font-size: 6rem;
+            font-weight: 800;
+            color: #2E7D32;
+            line-height: 1;
+            margin-bottom: 16px;
         }
 
         h1 {
-            color: #111;
-            font-size: 24px;
+            color: #212121;
+            font-size: 1.5rem;
             margin-bottom: 12px;
         }
 
         p {
-            color: #666;
-            font-size: 16px;
+            color: #757575;
+            font-size: 1rem;
             margin-bottom: 32px;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .btn {
-            display: block;
-            width: 100%;
-            padding: 16px 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
             border-radius: 12px;
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: 600;
             text-decoration: none;
-            margin-bottom: 12px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            margin: 0 6px 12px;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #137FEC, #0D5BB5);
+            background: linear-gradient(135deg, #2E7D32, #1B5E20);
             color: white;
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
         }
 
         .btn-secondary {
             background: #f5f5f5;
-            color: #333;
+            color: #424242;
         }
 
-        .spinner {
-            display: none;
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #137FEC;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading .spinner {
-            display: block;
-        }
-
-        .loading .btn {
-            display: none;
+        .btn-secondary:hover {
+            background: #eeeeee;
+            transform: translateY(-2px);
         }
 
         .footer {
             margin-top: 24px;
-            color: #999;
-            font-size: 12px;
+            color: #BDBDBD;
+            font-size: 0.8rem;
         }
     </style>
 </head>
 <body>
-    <div class="container" id="container">
-        <div class="logo">🛒</div>
-        <h1>Kalouma Market</h1>
-        <p id="message">Ouverture de l'annonce dans l'application...</p>
+    <div class="container">
+        <div class="logo">
+            <img src="/images/logos/logo-header.png" alt="Kalouma Market">
+            <span>Kalouma</span>
+        </div>
 
-        <div class="spinner" id="spinner"></div>
+        <div class="error-code">404</div>
+        <h1>Page introuvable</h1>
+        <p>La page que vous cherchez n'existe pas ou a ete deplacee.</p>
 
-        <a href="#" class="btn btn-primary" id="openApp" style="display: none;">
-            Ouvrir dans l'app
-        </a>
-
-        <a href="https://play.google.com/store/apps/details?id=com.kalouma.market"
-           class="btn btn-primary" id="downloadBtn" style="display: none;">
-            Telecharger l'application
-        </a>
-
-        <a href="https://play.google.com/store/apps/details?id=com.kalouma.market"
-           class="btn btn-secondary" id="storeBtn" style="display: none;">
-            Voir sur Play Store
-        </a>
+        <div>
+            <a href="/" class="btn btn-primary">
+                <i class="fas fa-home"></i> Accueil
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.kalouma.market" class="btn btn-secondary" target="_blank" rel="noopener">
+                <i class="fab fa-google-play"></i> Telecharger l'app
+            </a>
+        </div>
 
         <div class="footer">
-            Kalouma Market - Achetez et vendez en Guinee
+            Kalouma Market - La marketplace de confiance en Guinee
         </div>
     </div>
-
-    <script>
-        // Extraire le type et l'ID depuis l'URL
-        const pathParts = window.location.pathname.split('/').filter(p => p);
-        const type = pathParts[0]; // 'ad' ou 'service'
-        const itemId = pathParts[1] || '';
-
-        // Verifier si c'est un deep link valide
-        const isDeepLink = (type === 'ad' || type === 'service') && itemId;
-
-        // URLs
-        const appDeepLink = isDeepLink ? `kalouma://${type}/${itemId}` : 'kalouma://';
-        const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kalouma.market';
-
-        // Detecter le type d'appareil
-        const isAndroid = /Android/i.test(navigator.userAgent);
-        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-        const isMobile = isAndroid || isIOS;
-
-        const container = document.getElementById('container');
-        const message = document.getElementById('message');
-        const spinner = document.getElementById('spinner');
-        const openAppBtn = document.getElementById('openApp');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const storeBtn = document.getElementById('storeBtn');
-
-        // Si ce n'est pas un deep link valide, rediriger vers l'accueil
-        if (!isDeepLink) {
-            window.location.href = '/';
-        }
-
-        function showDownloadOptions() {
-            spinner.style.display = 'none';
-            message.textContent = "L'application n'est pas installee";
-
-            if (isAndroid) {
-                downloadBtn.style.display = 'block';
-                downloadBtn.href = playStoreUrl;
-            } else if (isIOS) {
-                downloadBtn.style.display = 'block';
-                downloadBtn.textContent = 'Bientot disponible sur App Store';
-                downloadBtn.href = '#';
-                downloadBtn.style.background = '#ccc';
-            } else {
-                // Desktop
-                message.textContent = "Scannez ce QR code avec votre telephone ou telechargez l'app";
-                storeBtn.style.display = 'block';
-            }
-        }
-
-        function tryOpenApp() {
-            spinner.style.display = 'block';
-
-            // Essayer d'ouvrir l'app
-            const start = Date.now();
-
-            // Creer un iframe invisible pour tenter d'ouvrir l'app
-            const iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            iframe.src = appDeepLink;
-            document.body.appendChild(iframe);
-
-            // Aussi essayer avec window.location
-            setTimeout(() => {
-                window.location.href = appDeepLink;
-            }, 100);
-
-            // Si apres 2 secondes on est toujours la, l'app n'est pas installee
-            setTimeout(() => {
-                const elapsed = Date.now() - start;
-
-                // Si moins de 2 secondes se sont ecoulees, l'app n'a probablement pas ete ouverte
-                if (elapsed < 2500) {
-                    showDownloadOptions();
-                }
-            }, 2000);
-        }
-
-        // Lancer la detection au chargement
-        if (isDeepLink) {
-            if (isMobile) {
-                tryOpenApp();
-            } else {
-                // Sur desktop, montrer directement les options
-                spinner.style.display = 'none';
-                message.textContent = "Telechargez Kalouma Market sur votre telephone";
-                storeBtn.style.display = 'block';
-            }
-        }
-
-        // Gerer la visibilite de la page (si l'utilisateur revient)
-        document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'visible') {
-                // L'utilisateur est revenu, montrer les options de telechargement
-                setTimeout(showDownloadOptions, 500);
-            }
-        });
-    </script>
 </body>
 </html>

@@ -26,9 +26,9 @@
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="stylesheet" href="css/site.css?v=3">
+<link rel="stylesheet" href="css/site.css?v=4">
 <script src="js/analytics.js" defer></script>
-<script src="js/site.js" defer></script>
+<script src="js/site.js?v=4" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -70,7 +70,22 @@
 <header class="site-header">
   <div class="wrap">
     <a class="logo" href="./" aria-label="Kalouma Market, accueil">Kalouma<span>.</span></a>
-    <a class="btn" id="cta-header" href="#telecharger">Télécharger</a>
+    <nav class="nav" id="menu" aria-label="Menu principal">
+      <ul>
+        <li><a href="#t-comment">Comment ça marche</a></li>
+        <li><a href="#t-app">Fonctionnalités</a></li>
+        <li><a href="#t-boost">Boost</a></li>
+        <li><a href="#t-conf">Sécurité</a></li>
+        <li><a href="#t-faq">Questions</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="btn" id="cta-header" href="#telecharger">Télécharger</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+        <svg class="ico-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="ico-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
   </div>
 </header>
 

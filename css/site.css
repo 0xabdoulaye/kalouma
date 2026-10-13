@@ -101,7 +101,8 @@ a:hover{color:var(--blue-ink-hover)}
 .band-sub{margin-top:14px;font-size:17px}
 .peek{display:flex;justify-content:center;height:340px;overflow:hidden}
 .peek .phone{width:min(250px,72%);height:max-content;box-shadow:none}
-.phone--crop{aspect-ratio:720/1215}
+.phone--crop{aspect-ratio:720/1507}
+.band .peek{height:auto;padding-bottom:56px}
 .band .peek .phone{border-color:#0B1A33}
 
 /* Confiance */
